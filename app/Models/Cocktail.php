@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Cocktail extends Model
 {
     use HasFactory;
+
+    protected $fillable = ['_token', 'id', 'name', 'category', 'tags', 'ingredients', 'is_alcoholic', 'instructions', 'thumb', 'glass_type'];
+
+    protected $casts = [
+        'tags' => 'array',
+        'ingredients' => 'array'
+
+    ];
 }
