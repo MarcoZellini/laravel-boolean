@@ -8,11 +8,18 @@ use Illuminate\Http\Request;
 
 class CocktailController extends Controller
 {
-    public function Cocktails()
+    public function cocktails()
     {
         return response()->json([
             'success' => true,
-            'result' => Cocktail::orderByDesc('id')->paginate(10)
+            'result' => Cocktail::orderByDesc('id')->paginate(9)
         ]);
     }
+    /*     public function FilteredCocktail()
+    {
+        return response()->json([
+            'success' => true,
+            'result' => Cocktail::with("category")->get()
+        ]);
+    } */
 }
