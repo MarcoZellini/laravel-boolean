@@ -3,7 +3,7 @@
 use App\Http\Controllers\API\CocktailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\API\LeadController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,4 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/cocktails', [CocktailController::class, 'cocktails']);
+Route::get('/cocktails/cocktail', [CocktailController::class, 'cocktail']);
+Route::get('/cocktails/drink', [CocktailController::class, 'drink']);
 Route::get('/cocktails/{category}', [CocktailController::class, 'filter']);
+Route::post('/contacts', [LeadController::class, 'store']);
