@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Cocktail;
+use Illuminate\Support\Facades\Http;
 
 class CocktailSeeder extends Seeder
 {
@@ -13,6 +14,32 @@ class CocktailSeeder extends Seeder
      */
     public function run(): void
     {
+        for ($i = 0; $i < 10; $i++) {
+            $response = Http::withoutVerifying()->get('https://www.thecocktaildb.com/api/json/v1/1/random.php');
+            $data = $response->json();
+            $randomCocktail = $data['drinks'][0];
+
+            $cocktail = new Cocktail();
+
+            $cocktail->name = $randomCocktail['strDrink'];
+            $cocktail->instructions = $randomCocktail['strInstructions'];
+            $cocktail->thumb = $randomCocktail['strDrinkThumb'];
+            $cocktail->category = $randomCocktail['strCategory'];
+
+            /* tags */
+            $tagstr = $randomCocktail['strTags'];
+            $tag = $tagstr ? explode(",", $tagstr) : null;
+            $cocktail->tags = $tag;
+            /* end tag */
+
+            $cocktail->glass_type = $randomCocktail['strGlass'];
+
+
+
+
+            $cocktail->save();
+        }
+        /* 
         $cocktails = [
             [
                 'name' => "Horse's Neck",
@@ -207,9 +234,9 @@ class CocktailSeeder extends Seeder
                 ]
             ],
         ];
-
+ 
         foreach ($cocktails as $cocktail) {
             Cocktail::create($cocktail);
-        }
+        }*/
     }
 }
