@@ -13,7 +13,7 @@ class CocktailController extends Controller
     {
         return response()->json([
             'success' => true,
-            'result' => Cocktail::orderByDesc('id')->paginate(9)
+            'result' => Cocktail::orderByDesc('id')->paginate(3)
         ]);
     }
     public function filter($category)
