@@ -34,7 +34,8 @@ class CocktailSeeder extends Seeder
 
             $cocktail->glass_type = $randomCocktail['strGlass'];
 
-            $ingredients = null;
+            $ingredients = [];
+
             for ($i = 1; $i <= 15; $i++) {
                 $ingredient = 'strIngredient' . $i;
                 $measure = 'strMeasure' . $i;
