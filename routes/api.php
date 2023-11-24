@@ -22,6 +22,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::get('/cocktails', [CocktailController::class, 'cocktails']);
-Route::get('/cocktails/{category}', [CocktailController::class, 'filter']);
+Route::get('/cocktails/category/{slug}', [CocktailController::class, 'filter']);
 Route::post('/contacts', [LeadController::class, 'store']);
 Route::get('/categories', [CategoryController::class, 'categories']);

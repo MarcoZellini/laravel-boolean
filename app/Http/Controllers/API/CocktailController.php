@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Cocktail;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -17,16 +18,22 @@ class CocktailController extends Controller
         ]);
     }
 
-    public function filter($category)
+    public function filter($slug)
     {
 
-        $category = str_replace('%20', ' ', $category);
+        $category = Category::where('slug', $slug)->first();
 
-        $query = Cocktail::where('category', $category)->get();
-
-        return response()->json([
-            'success' => true,
-            'result' => $query
-        ]);
+        if ($category) {
+            $query = Cocktail::where('category_id', $category->id)->with('category')->get();
+            return response()->json([
+                'success' => true,
+                'result' => $query
+            ]);
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Ops! Categoria non trovata.'
+            ]);
+        }
     }
 }
