@@ -20,6 +20,7 @@ class CocktailController extends Controller
     {
 
         $category = str_replace('%20', ' ', $category);
+
         $query = Cocktail::where('category', $category)->get();
 
         return response()->json([
@@ -28,7 +29,7 @@ class CocktailController extends Controller
         ]);
     }
 
-    public function cocktail()
+    /*   public function cocktail()
     {
         return response()->json([
             'success' => true,
@@ -42,5 +43,5 @@ class CocktailController extends Controller
             'success' => true,
             'result' => Cocktail::where('category', 'Ordinary Drink')->get()
         ]);
-    }
+    } */
 }
