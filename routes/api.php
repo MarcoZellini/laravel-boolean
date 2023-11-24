@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\CategoryController;
 use App\Http\Controllers\API\CocktailController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -23,3 +24,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/cocktails', [CocktailController::class, 'cocktails']);
 Route::get('/cocktails/{category}', [CocktailController::class, 'filter']);
 Route::post('/contacts', [LeadController::class, 'store']);
+Route::get('/categories', [CategoryController::class, 'categories']);

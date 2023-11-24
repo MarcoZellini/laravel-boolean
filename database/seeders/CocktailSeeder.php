@@ -21,14 +21,12 @@ class CocktailSeeder extends Seeder
 
             $cocktail = new Cocktail();
 
+            //Da Rivedere
+            $cocktail->category_id = rand(1, 5);
+
             $cocktail->name = $randomCocktail['strDrink'];
             $cocktail->instructions = $randomCocktail['strInstructions'];
             $cocktail->thumb = $randomCocktail['strDrinkThumb'];
-
-            /* category */
-            $category = $randomCocktail['strCategory'];
-            $cocktail->category = str_replace('/', '-', $category);
-            /* category */
 
             /* tags */
             $tagstr = $randomCocktail['strTags'];

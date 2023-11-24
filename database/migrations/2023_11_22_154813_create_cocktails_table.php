@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('name', 50);
             $table->string('thumb')->nullable();
-            $table->string('category')->nullable();
             $table->json('tags')->nullable();
             $table->string('glass_type', 50)->nullable();
             $table->json('ingredients')->nullable();

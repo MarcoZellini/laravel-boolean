@@ -16,6 +16,7 @@ class CocktailController extends Controller
             'result' => Cocktail::orderByDesc('id')->paginate(3)
         ]);
     }
+
     public function filter($category)
     {
 
