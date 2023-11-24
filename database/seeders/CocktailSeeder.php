@@ -14,7 +14,7 @@ class CocktailSeeder extends Seeder
      */
     public function run(): void
     {
-        for ($index = 0; $index < 12; $index++) {
+        for ($index = 0; $index < 20; $index++) {
             $response = Http::withoutVerifying()->get('https://www.thecocktaildb.com/api/json/v1/1/random.php');
             $data = $response->json();
             $randomCocktail = $data['drinks'][0];
@@ -24,7 +24,11 @@ class CocktailSeeder extends Seeder
             $cocktail->name = $randomCocktail['strDrink'];
             $cocktail->instructions = $randomCocktail['strInstructions'];
             $cocktail->thumb = $randomCocktail['strDrinkThumb'];
-            $cocktail->category = $randomCocktail['strCategory'];
+
+            /* category */
+            $category = $randomCocktail['strCategory'];
+            $cocktail->category = str_replace('/', '-', $category);
+            /* category */
 
             /* tags */
             $tagstr = $randomCocktail['strTags'];
@@ -42,7 +46,7 @@ class CocktailSeeder extends Seeder
 
                 if ($randomCocktail[$ingredient] && $randomCocktail[$measure]) {
                     $ingredients[] = [
-                        'ingredient' => $randomCocktail[$ingredient],
+                        'name' => $randomCocktail[$ingredient],
                         'measure' => $randomCocktail[$measure]
                     ];
                 }
