@@ -28,20 +28,4 @@ class CocktailController extends Controller
             'result' => $query
         ]);
     }
-
-    /*   public function cocktail()
-    {
-        return response()->json([
-            'success' => true,
-            'result' => Cocktail::where('category', 'Cocktail')->get()
-        ]);
-    }
-
-    public function drink()
-    {
-        return response()->json([
-            'success' => true,
-            'result' => Cocktail::where('category', 'Ordinary Drink')->get()
-        ]);
-    } */
 }
